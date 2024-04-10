@@ -21,6 +21,46 @@ public class MaxCounters {
 
         int [] counters = new int [N];
         Arrays.fill(counters, 0);
+        int maxCounter = 0;
+        int operations = A.length;
+
+        System.out.printf("initial counters %s%n", Arrays.toString(counters));
+
+        // for every operation
+        for (int i = 0; i < operations; i++) {
+
+            System.out.printf("for A[%d] = %d%n", i, A[i]);
+
+            // check for operation #1
+            // if A[K] = X, such that 1<=X<=N, then the operation K is increase(X)
+            // BTW, K is i, X is the index of a counters array position
+            if (1 <= A[i] && A[i] <= N) {
+
+                // Note the X values are one-based; arrays are still zero-based indices
+                int temp = counters[ A[i] - 1 ];
+                temp += 1;
+                counters[ A[i] - 1 ] = temp;
+                if (maxCounter < temp) {
+
+                    maxCounter = temp;
+
+                }
+
+            }
+
+            // check for operation #2
+            // if A[K] = N + 1, then operation K is max counter
+            if (A[i] == N + 1) {
+
+                int [] temp = new int [N];
+                Arrays.fill(temp, maxCounter);
+                counters = temp;
+
+            }
+
+            System.out.printf("current counters %s%n", Arrays.toString(counters));
+
+        }
 
         return counters;
     }
