@@ -52,9 +52,7 @@ public class MaxCounters {
             // if A[K] = N + 1, then operation K is max counter
             if (A[i] == N + 1) {
 
-                int [] temp = new int [N];
-                Arrays.fill(temp, maxCounter);
-                counters = temp;
+                Arrays.fill(counters, maxCounter);
 
             }
 
